@@ -2,6 +2,9 @@ pipeline {
     agent {
         docker { image 'public.ecr.aws/docker/library/maven:3.9-sapmachine' }
     }
+    environment {
+        MAVEN_USER_HOME = "${env.WORKSPACE}/.m2"
+    }
     stages {
         stage('Source') {
             steps {
