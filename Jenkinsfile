@@ -11,9 +11,11 @@ pipeline {
                     url: 'https://github.com/LinkedInLearning/essential-jenkins-2468076.git'
             }
         }
-        stage('Clean') {
+      stage('Clean') {
             steps {
-                    sh 'mvn clean'           
+                dir("${env.WORKSPACE}"){
+                    sh 'mvn clean'
+                }
             }
         }
         stage('Test') {
