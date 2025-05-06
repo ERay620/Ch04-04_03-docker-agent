@@ -17,7 +17,6 @@ pipeline {
         stage('Clean') {
             steps {
                 dir("${env.WORKSPACE}/Ch04/04_03-docker-agent"){
-                    sh 'mkdir -p $MAVEN_USER_HOME/repository'
                     sh 'mvn clean'
                 }
             }
