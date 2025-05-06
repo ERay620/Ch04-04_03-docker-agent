@@ -8,7 +8,7 @@ pipeline {
                 sh 'mvn --version'
                 sh 'git --version'
                 git branch: 'main',
-                    url: 'https://github.com/LinkedInLearning/essential-jenkins-2468076.git'
+                    url: 'https://github.com/ERay620/Ch04-04_03-docker-agent.git'
             }
         }
       stage('Clean') {
@@ -20,14 +20,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                dir("${env.WORKSPACE}/Ch04/04_03-docker-agent"){
+                dir("${env.WORKSPACE}"){
                     sh 'mvn test'
                 }
             }
         }
         stage('Package') {
             steps {
-                dir("${env.WORKSPACE}/Ch04/04_03-docker-agent"){
+                dir("${env.WORKSPACE}"){
                     sh 'mvn package -DskipTests'
                 }
             }
