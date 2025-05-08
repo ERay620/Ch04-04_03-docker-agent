@@ -17,6 +17,13 @@ pipeline {
                     url: 'https://github.com/ERay620/Ch04-04_03-docker-agent.git'
             }
         }
+        stage('Clean') {
+            steps {
+                dir("${env.WORKSPACE}"){
+                    sh 'mvn clean'
+                }
+            }
+        }
         stage('Example1') {
             steps {
                 echo "I am your father. My name is ${params.FATHER}"
