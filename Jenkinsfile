@@ -1,6 +1,7 @@
 pipeline {
     agent {
         docker { image 'public.ecr.aws/docker/library/maven:latest' }
+        args '-e HOME=/tmp'
     }
 
     parameters {
