@@ -25,15 +25,14 @@ pipeline {
                 sh 'mvn clean'
             }
         }
-        stage('Example1') {
+        stage('Test') {
             steps {
-                echo "I am your father. My name is ${params.FATHER}"
+                sh 'mvn test'
             }
         }
-        stage('Example2') {
+        stage('Package') {
             steps {
-                echo "I am your father. My name is ${params.FATHER}"
-                echo "My favorite phrase is ${params.PHRASE}"
+                sh 'mvn package -DskipTests'
             }
         }
     }
