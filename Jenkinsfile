@@ -19,9 +19,7 @@ pipeline {
         }
         stage('Clean') {
             steps {
-                dir("${env.WORKSPACE}"){
                     sh 'mvn clean'
-                }
             }
         }
         stage('Example1') {
