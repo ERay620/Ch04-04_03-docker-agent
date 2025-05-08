@@ -9,6 +9,14 @@ pipeline {
     }
 
     stages {
+          stage('Source') {
+            steps {
+                sh 'mvn --version'
+                sh 'git --version'
+                git branch: 'main',
+                    url: 'https://github.com/ERay620/Ch04-04_03-docker-agent.git'
+            }
+        }
         stage('Example1') {
             steps {
                 echo "I am your father. My name is ${params.FATHER}"
