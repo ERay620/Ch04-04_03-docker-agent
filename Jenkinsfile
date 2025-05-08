@@ -1,32 +1,31 @@
 pipeline {
-    agent {
-        docker {
-            image 'public.ecr.aws/docker/library/maven:latest'
-            args '-e HOME=/tmp'
-        }
+    agent { docker 'public.ecr.aws/docker/library/golang:latest' }
+    environment {
+      GOCACHE = "${env.WORKSPACE}/.build_cache"
     }
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '10', numToKeepStr: '10'))
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
+    }
+
     stages {
         stage('Source') {
             steps {
-                sh 'mvn --version'
-                sh 'git --version'
-                git branch: 'main',
-                    url: 'https://github.com/ERay620/Ch04-04_03-docker-agent.git'
+                sh 'which go'
+                sh 'go version'
+                git branch: 'stable',
+                    url: 'https://github.com/gohugoio/hugo.git'
             }
         }
-        stage('Clean') {
+        stage('Build') {
             steps {
-                sh 'mvn clean'
+                sh "go build --tags extended"
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Package') {
-            steps {
-                sh 'mvn package -DskipTests'
+                sh './hugo env'
             }
         }
     }
