@@ -1,7 +1,9 @@
 pipeline {
     agent {
-        docker { image 'public.ecr.aws/docker/library/maven:latest' }
-        args '-e HOME=/tmp'
+        docker {
+            image 'public.ecr.aws/docker/library/maven:latest'
+            args '-e HOME=/tmp'
+        }
     }
 
     parameters {
@@ -10,7 +12,7 @@ pipeline {
     }
 
     stages {
-          stage('Source') {
+        stage('Source') {
             steps {
                 sh 'mvn --version'
                 sh 'git --version'
@@ -20,7 +22,7 @@ pipeline {
         }
         stage('Clean') {
             steps {
-                    sh 'mvn clean'
+                sh 'mvn clean'
             }
         }
         stage('Example1') {
