@@ -5,12 +5,6 @@ pipeline {
             args '-e HOME=/tmp'
         }
     }
-
-    parameters {
-        string(name: 'FATHER', defaultValue: 'Vader', description: 'Name of the father')
-        string(name: 'PHRASE', defaultValue: 'I am your father!', description: 'Favorite phrase')
-    }
-
     stages {
         stage('Source') {
             steps {
